@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Bill Splitter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-receipt"></i> Smart Bill Splitter</h1>
+            <p>Split your restaurant bill fairly based on what each person ate!</p>
+        </header>
+
+        <div class="main-content">
+            <!-- People and Items Section -->
+            <div class="section">
+                <h2><i class="fas fa-users"></i> Add People & Their Food</h2>
+                <div class="add-person-section">
+                    <div class="input-group">
+                        <input type="text" id="personName" placeholder="Person's name" maxlength="20">
+                        <button onclick="addPerson()" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Person
+                        </button>
+                    </div>
+                </div>
+
+                <div id="peopleList" class="people-list">
+                    <!-- People will be added here -->
+                </div>
+            </div>
+
+            <!-- Shared Items Section -->
+            <div id="sharedItemsSection" class="section" style="display: none;">
+                <h2><i class="fas fa-share-alt"></i> Shared Items</h2>
+                <p class="section-description">Add items that are shared between multiple people (like appetizers, desserts, etc.)</p>
+                
+                <div class="add-shared-item-section">
+                    <div class="shared-item-form">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="sharedItemName">Shared Item Name</label>
+                                <input type="text" id="sharedItemName" placeholder="e.g., Garlic Bread, Dessert" maxlength="30">
+                            </div>
+                            <div class="input-group">
+                                <label for="sharedItemPrice">Price (₹)</label>
+                                <input type="number" id="sharedItemPrice" placeholder="0.00" step="0.01" min="0">
+                            </div>
+                        </div>
+                        
+                        <div class="shared-people-selection">
+                            <label>Select people sharing this item:</label>
+                            <div id="sharedPeopleCheckboxes" class="checkbox-grid">
+                                <!-- Checkboxes will be added here -->
+                            </div>
+                        </div>
+                        
+                        <button onclick="addSharedItem()" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add Shared Item
+                        </button>
+                    </div>
+                </div>
+
+                <div id="sharedItemsList" class="shared-items-list">
+                    <!-- Shared items will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Bill Details Section -->
+            <div class="section">
+                <h2><i class="fas fa-calculator"></i> Bill Details</h2>
+                <div class="bill-inputs">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="subtotal">Subtotal (₹)</label>
+                            <input type="number" id="subtotal" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="tax">Tax (₹)</label>
+                            <input type="number" id="tax" placeholder="0.00" step="0.01" min="0">
+                        </div>
+                        <div class="input-group">
+                            <label for="total">Total (₹)</label>
+                            <input type="number" id="total" placeholder="0.00" step="0.01" min="0" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <div class="calculate-section">
+                <button onclick="calculateBill()" class="btn btn-success btn-large">
+                    <i class="fas fa-calculator"></i> Calculate Fair Split
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" class="section results-section" style="display: none;">
+                <h2><i class="fas fa-chart-pie"></i> Bill Breakdown</h2>
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h3>Total Bill</h3>
+                        <p id="totalBillDisplay">₹0.00</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Tax Per Person</h3>
+                        <p id="taxPerPerson">₹0.00</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Participants</h3>
+                        <p id="participantCount">0</p>
+                    </div>
+                </div>
+
+                <div class="results-table">
+                    <h3>Individual Breakdown</h3>
+                    <div id="resultsTable"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Made with <i class="fas fa-heart"></i> for fair bill splitting</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
